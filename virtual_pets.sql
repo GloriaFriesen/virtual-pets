@@ -40,7 +40,11 @@ SET default_with_oids = false;
 CREATE TABLE monsters (
     id integer NOT NULL,
     name character varying,
-    personid integer
+    personid integer,
+    birthday timestamp without time zone,
+    lastate timestamp without time zone,
+    lastslept timestamp without time zone,
+    lastplayed timestamp without time zone
 );
 
 
@@ -119,7 +123,11 @@ ALTER TABLE ONLY persons ALTER COLUMN id SET DEFAULT nextval('persons_id_seq'::r
 -- Data for Name: monsters; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY monsters (id, name, personid) FROM stdin;
+COPY monsters (id, name, personid, birthday, lastate, lastslept, lastplayed) FROM stdin;
+1	Bubbles	1	2017-04-03 14:01:57.320174	2017-04-03 14:01:57.320174	2017-04-03 14:01:57.320174	2017-04-03 14:01:57.320174
+2	Gertrude	1	2016-09-22 00:00:00	2016-09-22 00:00:00	2016-09-22 00:00:00	2016-09-22 00:00:00
+3	Samson	1	2016-07-11 00:00:00	2016-07-11 00:00:00	2016-07-11 00:00:00	2016-07-11 00:00:00
+4	Beatrice	1	2016-08-11 00:00:00	2016-08-11 00:00:00	2016-08-11 00:00:00	2016-08-11 00:00:00
 \.
 
 
@@ -127,7 +135,7 @@ COPY monsters (id, name, personid) FROM stdin;
 -- Name: monsters_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('monsters_id_seq', 1, false);
+SELECT pg_catalog.setval('monsters_id_seq', 4, true);
 
 
 --
