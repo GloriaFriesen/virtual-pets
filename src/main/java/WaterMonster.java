@@ -21,7 +21,9 @@ public class WaterMonster extends Monster {
   public static List<WaterMonster> all() {
     String sql = "SELECT * FROM monsters WHERE type='water';";
     try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(WaterMonster.class);
+      return con.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(WaterMonster.class);
     }
   }
 
@@ -30,6 +32,7 @@ public class WaterMonster extends Monster {
       String sql = "SELECT * FROM monsters WHERE id=:id";
       WaterMonster monster = con.createQuery(sql)
         .addParameter("id", id)
+        .throwOnMappingFailure(false)
         .executeAndFetchFirst(WaterMonster.class);
       return monster;
     }
